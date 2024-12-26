@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        #features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #features ul li {
+            margin: 10px 0;
+        }
+        #logout {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #logout:hover {
+            background-color: #e04343;
+        }
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script type="module" src="user.js"></script>
+</head>
+<body>
+    <h1>User Dashboard</h1>
+    <div id="features">
+        <ul>
+            <li><button class="button" id="viewProductsBtn">View Products</button></li>
+            <li><button class="button" id="addToCartBtn">Add to Cart</button></li>
+            <li><button class="button" id="myOrdersBtn">My Orders</button></li>
+            <li><button class="button" id="placeOrderBtn">Place Order</button></li>
+            <li><button class="button" id="myProfileBtn">My Profile</button></li>
+        </ul>
+    </div>
+    <button id="logout">Logout</button>
+</body>
+</html>
