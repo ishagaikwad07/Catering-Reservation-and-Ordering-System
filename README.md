@@ -68,16 +68,15 @@ You can deploy this app on any server or local server environment. If you're usi
 
 Install http-server (if not already installed):
 
-bash
-Copy code
-```
+
+
+```bash
 npm install -g http-server
 ```
 Run the application:
 
-bash
-Copy code
-```
+
+```bash
 http-server -p 8080
 ```
 Now, visit http://localhost:8080 in your browser to interact with the admin and user dashboards.
