@@ -31,5 +31,5 @@ This project features a Firebase-powered Catering Reservation and Ordering syste
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/e-commerce-dashboard.git
+git clone https://github.com/ishagaikwad07/Catering-Reservation-and-Ordering-System.git
 
