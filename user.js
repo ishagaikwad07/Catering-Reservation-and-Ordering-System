@@ -82,42 +82,44 @@ async function viewProducts() {
     }
   }
 // Add to Cart
+// Add to Cart
 async function addToCart() {
   const productId = prompt("Enter Product ID to add to cart:");
   try {
-    const productRef = doc(db, "products", productId);
-    const productSnap = await getDoc(productRef);
-    if (productSnap.exists()) {
-      const cartRef = collection(db, "cart");
-      await addDoc(cartRef, {
-        productId,
-        userId: auth.currentUser.uid,
-        productName: productSnap.data().name,
-        price: productSnap.data().price,
-        quantity: 1,
-      });
-      alert("Product added to cart successfully!");
-    } else {
-      alert("Invalid Product ID.");
-    }
+      const productRef = doc(db, "products", productId);
+      const productSnap = await getDoc(productRef);
+      if (productSnap.exists()) {
+          const cartRef = doc(collection(db, "cart")); // Generate a new document ID
+          await setDoc(cartRef, {
+              id: cartRef.id, // Store the document ID in the `id` field
+              productId,
+              userId: auth.currentUser.uid,
+              productName: productSnap.data().name,
+              price: productSnap.data().price,
+              quantity: 1,
+          });
+          alert("Product added to cart successfully!");
+      } else {
+          alert("Invalid Product ID.");
+      }
   } catch (error) {
-    console.error("Error adding to cart:", error);
+      console.error("Error adding to cart:", error);
   }
 }
 
 // My Orders
 async function myOrders() {
   try {
-    const ordersQuery = query(
-      collection(db, "orders"),
-      where("userId", "==", auth.currentUser.uid)
-    );
-    const querySnapshot = await getDocs(ordersQuery);
-    querySnapshot.forEach((doc) => {
-      alert(`Order ID: ${doc.id}, Product: ${doc.data().product}, Quantity: ${doc.data().quantity}`);
-    });
+      const ordersQuery = query(
+          collection(db, "orders"),
+          where("userId", "==", auth.currentUser.uid)
+      );
+      const querySnapshot = await getDocs(ordersQuery);
+      querySnapshot.forEach((doc) => {
+          alert(`Order ID: ${doc.id}, Product: ${doc.data().product}, Quantity: ${doc.data().quantity}`);
+      });
   } catch (error) {
-    console.error("Error fetching orders:", error);
+      console.error("Error fetching orders:", error);
   }
 }
 
@@ -126,33 +128,24 @@ async function placeOrder() {
   const productId = prompt("Enter Product ID to place an order:");
   const quantity = prompt("Enter Quantity:");
   if (productId && quantity) {
-    try {
-      await addDoc(collection(db, "orders"), {
-        product: productId,
-        quantity: parseInt(quantity),
-        userId: auth.currentUser.uid,
-      });
-      alert("Order placed successfully!");
-    } catch (error) {
-      console.error("Error placing order:", error);
-    }
+      try {
+          const orderRef = doc(collection(db, "orders")); // Generate a new document ID
+          await setDoc(orderRef, {
+              id: orderRef.id, // Store the document ID in the `id` field
+              product: productId,
+              quantity: parseInt(quantity),
+              userId: auth.currentUser.uid,
+          });
+          alert("Order placed successfully!");
+      } catch (error) {
+          console.error("Error placing order:", error);
+      }
   } else {
-    alert("Product ID and Quantity are required!");
+      alert("Product ID and Quantity are required!");
   }
 }
 
 // My Profile
 async function myProfile() {
-  try {
-    const docRef = doc(db, "users", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const userData = docSnap.data();
-      alert(`Name: ${userData.firstName} ${userData.lastName}, Email: ${userData.email}`);
-    } else {
-      alert("Profile not found.");
-    }
-  } catch (error) {
-    console.error("Error fetching profile:", error);
-  }
+  window.location.href = "profile.html";
 }

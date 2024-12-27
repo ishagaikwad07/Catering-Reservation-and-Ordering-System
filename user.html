@@ -5,60 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <style>
+        /* General Styles */
         body {
-            background-color: #f4f4f9;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            text-align: center;
-        }
-        #features ul {
-            list-style-type: none;
+            background-color: #f9fafb;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
             padding: 0;
         }
-        #features ul li {
-            margin: 10px 0;
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
         }
+
+        #features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .button, #logout {
+            display: block;
+            width: 200px;
+            text-align: center;
+            padding: 15px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover, #logout:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
         #logout {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
             background-color: #ff4c4c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
+
         #logout:hover {
-            background-color: #e04343;
+            background-color: #d93434;
         }
-        .button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+
+        /* Container for better alignment */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 10px;
         }
-        .button:hover {
-            background-color: #45a049;
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .button, #logout {
+                width: 100%;
+            }
         }
     </style>
     <script type="module" src="user.js"></script>
 </head>
 <body>
-    <h1>User Dashboard</h1>
-    <div id="features">
-        <ul>
-            <li><button class="button" id="viewProductsBtn">View Products</button></li>
-            <li><button class="button" id="addToCartBtn">Add to Cart</button></li>
-            <li><button class="button" id="myOrdersBtn">My Orders</button></li>
-            <li><button class="button" id="placeOrderBtn">Place Order</button></li>
-            <li><button class="button" id="myProfileBtn">My Profile</button></li>
-        </ul>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <div id="features">
+            <button class="button" id="viewProductsBtn">View Products</button>
+            <button class="button" id="addToCartBtn">Add to Cart</button>
+            <button class="button" id="myOrdersBtn">My Orders</button>
+            <button class="button" id="placeOrderBtn">Place Order</button>
+            <button class="button" id="myProfileBtn">My Profile</button>
+        </div>
+        <button id="logout">Logout</button>
     </div>
-    <button id="logout">Logout</button>
+    <footer>
+        &copy; 2024 Student Dashboard. All Rights Reserved.
+    </footer>
 </body>
 </html>

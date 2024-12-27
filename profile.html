@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        .profile-section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        .profile-section p {
+            margin: 5px 0;
+            color: #555;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .edit-btn {
+            background-color: #ff9800;
+        }
+        .edit-btn:hover {
+            background-color: #e68a00;
+        }
+        .back-btn {
+            background-color: #007bff;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the Edit Profile form */
+        #editProfileForm {
+            display: none;
+            margin-top: 20px;
+        }
+        #editProfileForm input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Profile</h1>
+
+        <!-- Profile Details Section -->
+        <div class="profile-section" id="profileDetails">
+            <h2>Profile Information</h2>
+            <p id="profileName">Name: </p>
+            <p id="profileEmail">Email: </p>
+            <p id="profilePhone">Phone: </p>
+            <p id="profileAddress">Address: </p>
+            <p id="profileRole">Role: </p>
+            <p id="profileRegistered">Registered On: </p>
+        </div>
+
+        <!-- Order History Section -->
+        <div class="profile-section" id="orderHistory">
+            <h2>Order History</h2>
+            <p id="orders">Loading order history...</p>
+        </div>
+
+        <!-- Reservation Section -->
+        <div class="profile-section" id="reservations">
+            <h2>Reservations</h2>
+            <p id="reservationDetails">Loading reservations...</p>
+        </div>
+
+        <!-- Buttons -->
+        <button class="edit-btn" id="editProfileBtn">Edit Profile</button>
+        <button id="backToDashboardBtn" class="back-btn">Back to Dashboard</button>
+        <button id="logoutBtn">Logout</button>
+
+        <!-- Edit Profile Form (Initially hidden) -->
+        <div id="editProfileForm">
+            <h2>Edit Profile</h2>
+            <label for="editFirstName">First Name:</label>
+            <input type="text" id="editFirstName" />
+            <label for="editLastName">Last Name:</label>
+            <input type="text" id="editLastName" />
+            <label for="editPhone">Phone:</label>
+            <input type="text" id="editPhone" />
+            <label for="editAddress">Address:</label>
+            <input type="text" id="editAddress" />
+            <button id="saveProfileBtn">Save Changes</button>
+            <button id="cancelEditBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

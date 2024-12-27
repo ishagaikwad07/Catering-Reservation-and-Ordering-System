@@ -1,5 +1,5 @@
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc,addDoc,collection } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc,addDoc,collection,getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 import app from './firebase-init.js'
 
 // Initialize Firebase
@@ -48,43 +48,62 @@ document.getElementById('uploadProductBtn').addEventListener('click', uploadProd
 document.getElementById('viewOrdersBtn').addEventListener('click', viewOrders);
 // Function Definitions
 async function uploadProduct() {
-    const productName = prompt("Enter Product Name:");
-    const productPrice = prompt("Enter Product Price:");
-  
-    if (productName && productPrice) {
+  const productName = prompt("Enter Product Name:");
+  const productPrice = prompt("Enter Product Price:");
+
+  if (productName && productPrice) {
       try {
-        // Ensure product price is converted to a number
-        const price = parseFloat(productPrice);
-  
-        if (isNaN(price) || price <= 0) {
-          alert("Please enter a valid price.");
-          return;
-        }
-  
-        // Generate a unique Product ID
-        const productId = `PROD-${Date.now()}`; // Example: PROD-1672345890000
-  
-        // Add product to the "products" collection
-        const docRef = await addDoc(collection(db, "products"), {
-          id: productId,
-          name: productName.trim(),
-          price: price,
-        });
-  
-        alert(`Product uploaded successfully! Product ID: ${productId}`);
-        console.log("Product uploaded with ID: ", docRef.id);
+          // Ensure product price is converted to a number
+          const price = parseFloat(productPrice);
+
+          if (isNaN(price) || price <= 0) {
+              alert("Please enter a valid price.");
+              return;
+          }
+
+          // Generate a document reference with a unique ID
+          const docRef = doc(collection(db, "products"));
+
+          // Set the product document with the generated ID
+          await setDoc(docRef, {
+              id: docRef.id, // Store the document ID as the `id` field
+              name: productName.trim(),
+              price: price
+          });
+
+          alert(`Product uploaded successfully! Product ID: ${docRef.id}`);
+          console.log("Product uploaded with ID: ", docRef.id);
       } catch (error) {
-        console.error("Error uploading product: ", error.message);
-        alert("Failed to upload the product. Please try again.");
+          console.error("Error uploading product: ", error.message);
+          alert("Failed to upload the product. Please try again.");
       }
-    } else {
+  } else {
       alert("Product Name and Price are required!");
-    }
   }
+}
+// Function to view orders
 async function viewOrders() {
-    const querySnapshot = await getDocs(collection(db, "orders"));
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        alert(`Order ID: ${doc.id}, Product: ${doc.data().product}, Quantity: ${doc.data().quantity}`);
-    });
+  try {
+      // Fetch orders from Firestore
+      const ordersQuerySnapshot = await getDocs(collection(db, "orders"));
+
+      // Check if there are any orders
+      if (ordersQuerySnapshot.empty) {
+          alert("No orders found.");
+          return;
+      }
+
+      // Loop through the orders and display their details
+      let orderDetails = "";
+      ordersQuerySnapshot.forEach((doc) => {
+          const orderData = doc.data();
+          orderDetails += `Order ID: ${doc.id}, Product: ${orderData.product}, Quantity: ${orderData.quantity}\n`;
+      });
+
+      // Display order details
+      alert(orderDetails);
+  } catch (error) {
+      console.error("Error fetching orders: ", error);
+      alert("Failed to fetch orders. Please try again.");
+  }
 }
