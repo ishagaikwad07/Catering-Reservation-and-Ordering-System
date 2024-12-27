@@ -3,20 +3,9 @@
 <head>
     <title>Admin Setup</title>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
-        const firebaseConfig = {
-    apiKey: "AIzaSyCS2nCKVoJF2HC7jyVUiLT1niQvbSPFxDQ",
-    authDomain: "catering-system-93dd0.firebaseapp.com",
-    projectId: "catering-system-93dd0",
-    storageBucket: "catering-system-93dd0.firebasestorage.app",
-    messagingSenderId: "119625194735",
-    appId: "1:119625194735:web:7497f9ae18ad94e7c4cf1a"
-        };
-
-        const app = initializeApp(firebaseConfig);
+        import app from './firebase-init.js'
         const db = getFirestore(app);
         const auth = getAuth(app);
 
