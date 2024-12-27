@@ -46,8 +46,7 @@ Obtain your Firebase project's configuration details, which you will use in the 
 3. Add Firebase Configuration
 In your project folder, create a file named firebase-init.js and add your Firebase config object:
 
-javascript
-Copy code
+```bash
 // firebase-init.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 
@@ -62,6 +61,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export default app;
+```
 
 4. Run the Application
 You can deploy this app on any server or local server environment. If you're using local development, you can use a simple web server like http-server or any other tool of your choice.
@@ -70,12 +70,16 @@ Install http-server (if not already installed):
 
 bash
 Copy code
+```
 npm install -g http-server
+```
 Run the application:
 
 bash
 Copy code
+```
 http-server -p 8080
+```
 Now, visit http://localhost:8080 in your browser to interact with the admin and user dashboards.
 
 
